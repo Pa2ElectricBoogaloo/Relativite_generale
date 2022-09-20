@@ -1,0 +1,126 @@
+\documentclass[french,11pt]{exam}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{babel}
+
+\usepackage{geometry}
+\geometry{margin=0.6in}
+
+\usepackage{amsmath, amsfonts, amsthm, amssymb, mathtools, centernot}
+\usepackage[inline]{asymptote}
+\usepackage{enumerate, enumitem, listings}
+\usepackage{graphicx, wrapfig, hyperref}
+\usepackage{booktabs}
+\usepackage{caption}
+\usepackage{tikz}
+\usepackage{tkz-fct}
+\usepackage{tkz-euclide}
+\usetikzlibrary{quotes,angles}
+\usetikzlibrary{patterns}
+
+\usepackage{subcaption}
+\usepackage{physics}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{array}
+    \newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
+    \newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
+\usepackage{ dsfont }
+%\usepackage[dvipsnames]{xcolor}
+
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
+%\DeclarePairedDelimiter{\abs}{\vert}{\vert}
+\DeclarePairedDelimiter{\p}{\left(}{\right)}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt plus 1pt}
+%\pagestyle{empty}
+
+\newcommand{\questiontype}{Question}
+\newcommand{\writtensection}{0}
+
+\def\indented#1{\list{}{}\item[]}
+\let\indented=\endlist
+
+\newcounter{questionCounter}
+\newcounter{partCounter}[questionCounter]
+
+
+\newenvironment{namedquestion}[1][\arabic{questionCounter}]{%
+    \refstepcounter{questionCounter}
+    \addtocounter{questionCounter}{1}%
+    \setcounter{partCounter}{0}%
+    \vspace{.2in}%
+        \noindent{\bf #1}%
+    \vspace{0.3em} \hrule \vspace{.1in}%
+}{}
+
+\newenvironment{numedquestion}[0]{%
+	\stepcounter{questionCounter}%
+    \vspace{.2in}%
+        \ifx\writtensection\undefined
+        \noindent{\bf \questiontype \; \arabic{questionCounter}. }%
+        \else
+          \if\writtensection0
+          \noindent{\bf \questiontype \; \arabic{questionCounter}. }%
+          \else
+          \noindent{\bf \questiontype \; \writtensection.\arabic{questionCounter} }%
+        \fi
+    \vspace{0.3em} \hrule \vspace{.1in}%
+}{}
+
+\newenvironment{alphaparts}[0]{%
+  \begin{enumerate}[label=\textbf{(\alph*)}]
+}{\end{enumerate}}
+
+\newenvironment{arabicparts}[0]{%
+  \begin{enumerate}[label=\textbf{\arabic{questionCounter}.\arabic*})]
+}{\end{enumerate}}
+
+\newenvironment{questionpart}[0]{%
+  \item
+}{}
+
+\newcommand{\vh}[1]{\boldsymbol{\hat{#1}}}
+%\newcommand{\vb}[1]{\mathbf{#1}}
+
+\newcommand{\answerbox}[1]{
+\begin{framed}
+\vspace{#1}
+\end{framed}}
+
+
+\newcommand{\Noms}{Pierre-Antoine Graham}
+\newcommand{\typeDev}{Devoir}
+\newcommand{\numeroDev}{1}
+\newcommand{\titre}{\typeDev \space \numeroDev}
+\newcommand{\nomCours}{Relativité générale, PHQ615}
+\newcommand{\typeDeQuestion}{}
+\newcommand{\Date}{23 septembre 2022}
+
+
+\newcommand{\col}[1]{\begin{pmatrix} #1 \end{pmatrix}}
+%\newcommand{\vh}[1]{\mathbf{\hat{#1}}}%vecteur unitaires en gras
+\newcommand{\til}{\widetilde}
+\newcommand{\To}{\Longrightarrow}
+\newcommand{\From}{\Longleftarrow}
+\newcommand{\pdvc}[3]{\qty(\pdv{#1}{#2})_{#3}}
+\newcommand{\beps}{\boldsymbol\epsilon}
+
+
+\newcommand{\courtTitre}
+{\thispagestyle{plain}
+\begin{center}
+  {\Large \scshape \nomCours: \typeDev\space \numeroDev} \\
+  \Noms{} \\
+  \Date
+
+\end{center}
+
+\cfoot{\thepage}
+%\vspace{-0.5cm}
+
+
+}

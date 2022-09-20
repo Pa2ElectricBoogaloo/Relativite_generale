@@ -1,0 +1,81 @@
+\begin{figure}[h!]
+    \centering
+    \begin{tikzpicture}[
+        extended line/.style={shorten >=-#1,shorten <=-#1},
+        extended line/.default=1cm,
+        one end extended/.style={shorten >=-#1},
+        one end extended/.default=1cm, 
+        scale=2,
+        ]
+        \def\r{2};
+        \def\t{160};
+        \coordinate (point) at ({\r * cos(\t)}, {\r * sin(\t)});
+        \coordinate (N) at (0, \r);
+        \coordinate (S) at (0, -\r);
+        \coordinate (A) at (-5, 0);
+        \coordinate (B) at (5, 0);
+        \coordinate (O) at (0, 0);
+
+        \tkzInterLL(point,N)(A,B) \tkzGetPoint{E}
+        \tkzInterLL(point,S)(A,B) \tkzGetPoint{F}
+
+        
+
+        \draw (-5,0) -- (5, 0);
+        \draw (0,0) circle (\r);
+
+
+        \draw[fill=red!30]    (0,0) -- (F) -- (S) -- (0, 0);
+        \draw[fill=green!30]    (0,0) -- (N) -- (E) -- (0, 0);
+
+        \begin{scope}
+            \path[clip] (N) -- (E) -- (O) -- cycle;
+            \draw [blue, fill=blue!20] (E) circle (10pt);
+        \end{scope}
+
+        \begin{scope}
+            \path[clip] (F) -- (S) -- (O) -- cycle;
+            \draw [blue, fill=blue!20] (S) circle (10pt);
+        \end{scope}
+
+        \begin{scope}
+            \path[clip] (O) -- (F) -- (S) -- cycle;
+            \draw [blue, fill=magenta] (F) circle (10pt);
+        \end{scope}
+
+        \begin{scope}
+            \path[clip] (point) -- (F) -- (E) -- cycle;
+            \draw [blue, fill=magenta] (F) circle (10pt);
+        \end{scope}
+
+        \tkzMarkRightAngle[fill = black!30!green, size=.2, line width=0.25mm](F,point,E);
+
+        \filldraw (point) circle (2pt);
+
+        \draw (point) -- (N);
+        \draw (point) -- (S);
+
+        \filldraw (E) circle (2pt);
+        \filldraw (F) circle (2pt);
+        \draw (point) -- (E);
+        \draw (point) -- (F);
+
+        \draw[black!30!green, line width=0.5mm] (0,-2mm)--++(-90:0.2)--++(E) node[below]{\Huge $r$}--++(90:0.2);
+        \draw[black!30!red, line width=0.5mm] (0,-5mm)--++(-90:0.2)--++(F) node[below]{\Huge $r'$}--++(90:0.2);
+        \draw[black!30!blue, line width=0.5mm] (2,0)--++(0:0.2)--++(N) node[midway, xshift=3mm]{\Huge $1$}--++(180:0.2);
+
+        \filldraw[black!30!green] (N) circle (2pt);
+        \filldraw[black!30!red] (S) circle (2pt);
+        \tkzMarkRightAngle[fill = black!30!red, size=.2, line width=0.25mm](E,O,S);
+        \tkzMarkRightAngle[fill = black!30!green, size=.2, line width=0.25mm](E,O,N);
+
+        
+
+        
+        %\tkzMarkAngle[fill=blue,opacity=0.4](N, E, O);
+        %\tkzMarkAngle[fill=blue,opacity=0.4](N, E, O);
+        
+    \end{tikzpicture}
+    \caption{}
+\end{figure}
+

@@ -1,0 +1,26 @@
+Soit le référentiel $S$ associé à la base $\{\hat{x}, \hat{y}, \hat{z}, \hat{t}\}$ donnant les coordonnées des évenements de l'espace de Minkowski $\mathbb{R}^{3, 1}$. Les coordonnées des évenements dans $S$ sont envoyés vers un second référenciel $S'$ associé à la base $\{\hat{x}', \hat{y}', \hat{z}', \hat{t}'\}$ avec un boost de rapidité $\phi$ dans la direction $\hat{x}$. L'action de ce boost laisse $\hat{z}$ invariant et, dans le sous-espace $\mathbb{R}^{2, 1}$, il admet la representation matricielle
+\begin{align*}
+    \Lambda_{\phi, \hat{x}} = \left[\begin{matrix}\cosh{\left(\phi \right)} & \sinh{\left(\phi \right)} & 0\\\sinh{\left(\phi \right)} & \cosh{\left(\phi \right)} & 0\\0 & 0 & 1\end{matrix}\right].
+\end{align*}  
+Un second boost envoie les coordonnées de $S'$ vers un dernier référenciel $S''$ avec un boost de rapidité $\psi$ dans la direction $\hat{y}' = \hat{y}$. Ce boost preserve aussi $\hat{z}$ et sa representation matricielle dans le sous-espace $\mathbb{R}^{2, 1}$ est 
+\begin{align*}
+    \Lambda_{\psi, \hat{y}'} = \left[\begin{matrix}\cosh{\left(\psi \right)} & 0 & \sinh{\left(\psi \right)}\\0 & 1 & 0\\\sinh{\left(\psi \right)} & 0 & \cosh{\left(\psi \right)}\end{matrix}\right].  
+\end{align*}
+Le passage de $S$ à $S''$ est décrit par la transformation $M = \Lambda_{\psi, \hat{y}'}\Lambda_{\phi, \hat{x}}$ qui n'affecte globalement pas $\hat{z}$. On peut écrire $M$ comme le rpoduit d'un boost $\Lambda$ et d'une rotation dans le plan $Oxy$ (seule plan de rotation laissant $\hat{z}$ invariant). La représentation matricielle de $R^{-1}$ dans $\mathbb{R}^{2, 1}$ est 
+\begin{align*}
+    R^{-1} = \left[\begin{matrix}1 & 0 & 0\\0 & \cos{\left(\theta \right)} & - \sin{\left(\theta \right)}\\0 & \sin{\left(\theta \right)} & \cos{\left(\theta \right)}\end{matrix}\right]
+\end{align*}.
+On cherche à extraire la rotation contenue dans $M$ en y appliquant $R^{-1}$. La résultat est la representation matricielle de $\Lambda$ qui s'écrit 
+\begin{align*}
+    \Lambda = \left[\begin{matrix}\cosh{\left(\phi \right)} \cosh{\left(\psi \right)} & \sinh{\left(\phi \right)} & \sinh{\left(\psi \right)} \cosh{\left(\phi \right)}\\- \sin{\left(\theta \right)} \sinh{\left(\psi \right)} + \cos{\left(\theta \right)} \sinh{\left(\phi \right)} \cosh{\left(\psi \right)} & \cos{\left(\theta \right)} \cosh{\left(\phi \right)} & - \sin{\left(\theta \right)} \cosh{\left(\psi \right)} + \cos{\left(\theta \right)} \sinh{\left(\phi \right)} \sinh{\left(\psi \right)}\\\sin{\left(\theta \right)} \sinh{\left(\phi \right)} \cosh{\left(\psi \right)} + \cos{\left(\theta \right)} \sinh{\left(\psi \right)} & \sin{\left(\theta \right)} \cosh{\left(\phi \right)} & \sin{\left(\theta \right)} \sinh{\left(\phi \right)} \sinh{\left(\psi \right)} + \cos{\left(\theta \right)} \cosh{\left(\psi \right)}\end{matrix}\right]
+\end{align*}
+Puisque $\Lambda$ est un boost pure par hypothese, sa representation matricielle doit être symétrique et cela impose la contrainte suivante sur $\theta$:
+\begin{align*}
+    &0 = \sin{\left(\theta \right)} \cosh{\left(\phi \right)} + \sin{\left(\theta \right)} \cosh{\left(\psi \right)} - \cos{\left(\theta \right)} \sinh{\left(\phi \right)} \sinh{\left(\psi \right)} \\
+    &\implies
+    \left[\cos(\theta) \neq 0 \ \& \ \tan (\theta) = \dfrac{\sinh(\psi) \sinh(\phi)}{\cosh(\psi) + \cosh(\phi)}\right] \quad \text{or} \quad \left[\cos(\theta) = 0 \ \& \  \cosh{\left(\phi \right)} + \cosh{\left(\psi \right)} \implies \emptyset\right]
+\end{align*}
+qui correspond à l'égalité $\Lambda^0{}_2 = \Lambda^2{}_0$. À première vue, $2$ angles séparés par $\pi$ satisfont la contrainte. En réalité, on peut combiner le fait que $\theta = 0$ est réalisé lorsque $\phi = 0$ ou $\psi = 0$ à la contrainte $\cos(\theta) \neq 0$ pour avoir $\theta \in (-\pi/2, \pi/2)$ qui fixe une branche unique de l'inverse de $\tan$ ($\arctan$). On a finalement 
+\begin{align*}
+    \theta = \arctan\left(\dfrac{\sinh(\psi) \sinh(\phi)}{\cosh(\psi) + \cosh(\phi)}\right).
+\end{align*}

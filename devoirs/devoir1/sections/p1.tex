@@ -1,0 +1,30 @@
+Considérons un espace euclidien plat $E$ à $d$-dimensions. L'espace est submergé dans un espace hôte de dimsenion $\mathbb{R}^{d+1}$ (cette submersion est toujours possible pour un espace plat). Soit la carte de coordonnées $u : \mathbb{R}^{d+1} \to \mathbb{R}^d$ qui envoie les points $\mathbf{X}\in \mathbb{R}^{d+1}$ de la sumbmersion à des coordonnées $\mathbf{x} \in \mathbb{R}^{d}$. L'application inverse $u^{-1}$ permet d'écrire les composantes $[X_1, \ \cdots \ , X_{d+1}]$ de $\mathbf{X}$ dans une base \textit{orthonormée} de $\mathbb{R}^{d+1}$ en fonction des coordonnées $x^i$. Sans perte de généralité pour un espace plat $E$, on pose que $X_{d+1} \equiv 0$.\\
+
+Ignorant la composante nulle de $\mathbf{X}$, on peut interpréter $u^{-1}$ comme une application $\mathbb{R}^d \to \mathbb{R}^d$ qui déforme la grille orthogonale de l'espace des coordonnées vers les points correspondant de $\mathbf{X}$. Cette application déforme le volume cubique $\dd^d x = dx^1 \ \cdots \ dx^d$ vers un parallélotope. Les côtés du parallélotope sont données par le déplacement $d\mathbf{X} = \partial_i \mathbf{X} \dd x^i$ dans l'espace hôte induit par une variation infinitésimale $\dd x^i$ de la coordonnée $x^i$ (gardant les autres coordonnées constantes). Le volume $\dd V$ du parallélotope image de $\dd^d x$ est donné par 
+\begin{align*}
+    \dd V  &= 
+    \begin{vmatrix}
+        \partial_1 X_1 & \cdots & \partial_d X_1\\
+        \vdots & \ddots & \vdots \\
+        \partial_1 X_d & \cdots & \partial_d X_d
+    \end{vmatrix}
+    dx^1 \ \cdots \ dx^d\\
+    &= \left|\begin{bmatrix}
+        \partial_1 X_1 & \cdots & \partial_d X_1\\
+        \vdots & \ddots & \vdots \\
+        \partial_1 X_d & \cdots & \partial_d X_d
+    \end{bmatrix} \begin{bmatrix}
+        \partial_1 X_1 & \cdots & \partial_d X_1\\
+        \vdots & \ddots & \vdots \\
+        \partial_1 X_d & \cdots & \partial_d X_d
+    \end{bmatrix}\right|^{1/2}
+    dx^1 \ \cdots \ dx^d
+    \\
+    &= \left|\begin{bmatrix}
+        \partial_1 \mathbf{X} \cdot \partial_1 \mathbf{X}  & \cdots & \partial_1 \mathbf{X} \cdot \partial_d \mathbf{X}\\
+        \vdots & \ddots & \vdots \\
+        \partial_d \mathbf{X} \cdot \partial_1 \mathbf{X} & \cdots & \partial_d \mathbf{X} \cdot \partial_d \mathbf{X}
+    \end{bmatrix} \right|^{1/2}
+    dx^1 \ \cdots \ dx^d = \sqrt{g} dx^1 \ \cdots \ dx^d
+\end{align*}   
+où $g$ est le déterminant du tenseur métrique $g_{ij} = \partial_i \mathbf{X} \cdot \partial_j \mathbf{X}$. 
