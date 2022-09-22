@@ -1,3 +1,34 @@
+Soit l'immersion de la 2-sphère $\mathbb{S}^2$ de rayon $1$ dans $\mathbb{R}^3$. Pour simplifier ce qui suit, on note $S^2$ l'ouvert de $\mathbb{S}^2$ auquel on a retiré les pôles et un demi grand cercle qui les connectes\footnote{On exclue le nord et le sud, car l'un est envoyé à $\infty$ et l'autre est envoyé à l'origine de $Oxy$ qui n'est pas représentée en coordonnées polaires. De plus, par définition, une carte de surface est une aplications entre ouverts. Dans la topologie standart sur $\mathbb{R}^2$ la paramétrisation en coordonnées polaires n'est un ouvert que si elle exclue l'angle $0$ et $2\pi$. Cela impose le retrait de l'arc de grand cercle connectant les pôles dans l'ensemble des points représentés par $u_{N, S}$}. Considérons les projections stéréographiques 
+\begin{align*}
+    &\textcolor{black!30!green}{u_N} : S^2 \to  ] 0, 2\pi[ \times ]0, \infty[,\\
+    &\textcolor{black!30!red}{u_S} : S^2 \to  ]0, 2\pi[ \times ]0, \infty[
+\end{align*}
+ associant un point de $S^2$ à l'intersection avec le plan $Oxy$ (donnée en coordonnée polaires $(r, \varphi)$) de la droite joignant le \textcolor{black!30!green}{nord $(0, 0, 1)$} (resp. \textcolor{black!30!red}{sud $(0, 0, -1)$}) et ce point. Les applications $u_{N, S}$ constituent des cartes de surface de l'ouvert $S^2$ vers l'ouvert $]0, 2\pi[ \times ]0, \infty[$. À l'inverse
+ \begin{align*}
+    u_{N, S}^{-1} : &]0, 2\pi[ \times ]0, \infty[ \to S^2,\\
+    & (\varphi, r) \mapsto \mathbf{X}(\varphi, r) 
+ \end{align*} 
+  permet de représenter les points de $S^2$ en fonction des coordonnées sur le plan $Oxy$. On a
+ \begin{align*}
+    \mathbf{X}=\left(\frac{2 r \cos \varphi}{r^2+1}, \frac{2 r \sin \varphi}{r^2+1}, \frac{r^2-1}{r^2+1}\right).
+ \end{align*}
+ Le code qui suit permet de calculer la métrique, le symbol de christoffel, le tenseur de Riemann, de Ricci et le courbure de Ricci. Il en résulte les représentations matricielles
+ \begin{align*}
+    [g_{ij}] &= \left[\begin{array}{cc}\frac{4}{\left(r^2+1\right)^2} & 0 \\ 0 & \frac{4 r^2}{\left(r^2+1\right)^2}\end{array}\right],\\
+    [\Gamma_{ij}^k] &= \left[\left[\begin{array}{cc}-\frac{2 r}{r^2+1} & 0 \\ 0 & \frac{r^3-r}{r^2+1}\end{array}\right] \quad\left[\begin{array}{cc}0 & \frac{1-r^2}{r^3+r} \\ \frac{1-r^2}{r^3+r} & 0\end{array}\right]\right],\\
+    [R^i_{jkl}] &= \left[\begin{matrix}\left[\begin{matrix}0 & 0\\0 & 0\end{matrix}\right] & \left[\begin{matrix}0 & \frac{4 r^{2}}{r^{4} + 2 r^{2} + 1}\\- \frac{4 r^{2}}{r^{4} + 2 r^{2} + 1} & 0\end{matrix}\right]\\\left[\begin{matrix}0 & - \frac{4}{r^{4} + 2 r^{2} + 1}\\\frac{4}{r^{4} + 2 r^{2} + 1} & 0\end{matrix}\right] & \left[\begin{matrix}0 & 0\\0 & 0\end{matrix}\right]\end{matrix}\right],\\
+    [R_{ij}] &= \left[\begin{array}{cc}\frac{4}{r^4+2 r^2+1} & 0 \\ 0 & \frac{4 r^2}{r^4+2 r^2+1}\end{array}\right],\\
+    R &= 2.
+ \end{align*}
+
+\lstinputlisting[language=python]{calculations2.py}
+
+En appliquant successivement $u_N^{-1}$ et $u_S$, on produit l'application de changement de carte 
+\begin{align*}
+    u_S \circ u_N^{-1}: &]0, 2\pi[ \times ]0, \infty[ \to ]0, 2\pi[ \times ]0, \infty[,\\
+    & (\varphi, r) \mapsto (\varphi', r').
+\end{align*}
+
 \begin{figure}[h!]
     \centering
     \begin{tikzpicture}[
@@ -5,7 +36,7 @@
         extended line/.default=1cm,
         one end extended/.style={shorten >=-#1},
         one end extended/.default=1cm, 
-        scale=2,
+        scale=1.5,
         ]
         \def\r{2};
         \def\t{160};
@@ -50,8 +81,6 @@
 
         \tkzMarkRightAngle[fill = black!30!green, size=.2, line width=0.25mm](F,point,E);
 
-        \filldraw (point) circle (2pt);
-
         \draw (point) -- (N);
         \draw (point) -- (S);
 
@@ -64,18 +93,29 @@
         \draw[black!30!red, line width=0.5mm] (0,-5mm)--++(-90:0.2)--++(F) node[below]{\Huge $r'$}--++(90:0.2);
         \draw[black!30!blue, line width=0.5mm] (2,0)--++(0:0.2)--++(N) node[midway, xshift=3mm]{\Huge $1$}--++(180:0.2);
 
-        \filldraw[black!30!green] (N) circle (2pt);
-        \filldraw[black!30!red] (S) circle (2pt);
+        \filldraw[fill=black!30!green] (N) circle (2pt);
+        \filldraw[fill=black!30!red] (S) circle (2pt);
         \tkzMarkRightAngle[fill = black!30!red, size=.2, line width=0.25mm](E,O,S);
         \tkzMarkRightAngle[fill = black!30!green, size=.2, line width=0.25mm](E,O,N);
-
-        
-
-        
         %\tkzMarkAngle[fill=blue,opacity=0.4](N, E, O);
         %\tkzMarkAngle[fill=blue,opacity=0.4](N, E, O);
-        
+        \filldraw[fill = blue] (point) circle (2pt);
     \end{tikzpicture}
-    \caption{}
+    \caption{Représentation de l'application de transition entre les cartes $\textcolor{black!30!green}{u_N}$ et $\textcolor{black!30!red}{u_S}$ dans un plan quelconque contenant $\textcolor{black!30!green}{N}$ et $\textcolor{black!30!red}{S}$.\label{fig1}}
 \end{figure}
+\newpage
+Puisqu'une projection stéréographique à partir du pôle nord et du pôle sud impliquent des droites du même plan contenant $\textcolor{black!30!green}{N}$ et $\textcolor{black!30!red}{S}$, on a $\varphi = \varphi'$. La relation entre $r$ et $r'$ peut être établie avec la figure \ref{fig1}. Le pôle nord et sud sont respectivement représentés par les points \textcolor{black!30!green}{vert} et \textcolor{black!30!red}{rouge}. Le point projeté est représenté en \textcolor{blue}{bleu}. En comparant les triangles rouge et vert, on constate que tous les angles de couleurs identiques sont identiques: les triangles sont semblables. Cette similitude permet d'établir l'égalité du rapport des côtés correspondant et on a 
+\begin{align*}
+    \dfrac{r}{1}  = \dfrac{1}{r'}
+\end{align*}
+qui permet finalement d'écrire 
+\begin{align*}
+    u_S \circ u_N^{-1}: (\varphi, r) \mapsto (\varphi, 1/r).
+\end{align*}
+L'application de changement de carte $u_S \circ u_N^{-1}$ est différentiable partout sauf en $r = 0$ qui n'est pas inclu dans la représentation en coordonnées polaires. On a donc montré qu'il existe une application différentiable en tout point pour lié les cartes de surface (qui ont exactement la même image dans $\mathbb{R}^2$). En coordonnées polaires, les deux projections stéréographiques considérées ne forment pas un atlas, mais sont consistantes avec le fait que $\mathbb{S}^2$ est une variété différentiable. Pour montrer que $\mathbb{S}^2$ est une variété différentiable avec les deux projections, il faudrait utiliser un système de coordonnées cartésiennes qui ne présentent pas les mêmes limitations que les coordonnées polaires. Pour la projection à partir du pôle nord (resp. sud) le seule point de $\mathbb{S}^2$ à exclure pour avoir une application entre des ouverts serait le pôle nord (resp. sud). Les deux projections permetteraient alors de représenter chaque point de la surface, car l'union de leur domaines serait $\mathbb{S}^2$. En charchant l'application de transition entre leur image, on retrouverait l'équivalent de $u_S \circ u_N^{-1}$ en coordonnées cartésiennes. Cette application de transition entre les cartes serait encrore différentiable partout sur son domaine qui serait, cette fois, le plan $Oxy$ sans l'origine. Effectivement, le domaine de l'application de transition est l'image de l'intersection des domaines de $u_N$ et $u_S$ soit l'image de $\mathbb{S}^2$ sans pôles. Comme l'origine n'intervient pas, la divergence de $u_S \circ u_N^{-1}$ n'affecte pas sa différentiabilité sur son domaine. Toutes les (2) cartes de l'atlas cartésien étant lié par une application différentiable, on peut conclure que $\mathbb{S}^2$ est une variété différentiable.
+
+
+
+
+
 
